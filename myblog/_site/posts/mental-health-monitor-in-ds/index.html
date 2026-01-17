@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -160,11 +180,61 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is a post with executable code.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Being in a good state of mental health enables people to cope with the stresses of life, recognize their abilities, learn and work effectively, and contribute to their communities. For this reason, protecting mental well-being and identifying potential mental health issues at an early stage is critically important. Traditional approaches, such as clinical interviews, play a central role in mental health monitoring and diagnosis. However, these assessments are often limited to specific moments in time and take place in clinical settings. This raises an important question: is there a way to support mental health monitoring that is more closely integrated into everyday life, rather than relying solely on isolated clinic visits? In this article, I introduce the concept of passive behavioral data and explain how machine learning - particularly random forest - can be used to analyze these data. Drawing on recent research, I discuss how everyday digital signals may help support mental health monitoring, and I conclude by comparing the benefits and limitations of this approach with traditional methods.</p>
+</section>
+<section id="why-is-traditional-monitoring-ways-is-somewhat-challenging" class="level1">
+<h1>Why is traditional monitoring ways is somewhat challenging?</h1>
+<p>Clinical interviews are one of the most commonly used tools for identifying mental health conditions, but they face several important limitations. One major challenge is that these assessments are not continuous. Patients typically visit clinicians infrequently, which means that interviews rely heavily on individuals’ ability to recall their past experiences and behaviors. This reliance on memory can introduce recall bias and may lead to incomplete or inaccurate representations of a person’s mental state. In addition, mental health is closely linked to subtle, day-to-day changes in behavior, such as sleep patterns, physical activity, and daily routines. Because clinical interviews occur at discrete time points, they often fail to capture these gradual or fluctuating changes in everyday life. As a result, important early signals may go unnoticed between appointments. Another limitation is the length and intensity of traditional assessment processes. Comprehensive evaluations can be time-consuming and demanding for both patients and clinicians, making frequent monitoring impractical. These challenges highlight the need for complementary approaches. Recent studies suggest that data science methods, particularly those that analyze passive behavioral data collected from everyday digital devices, may help address some of these gaps by providing more continuous and context-rich insights into mental health <span class="citation" data-cites="shen2025passive">(<a href="#ref-shen2025passive" role="doc-biblioref">Shen et al. 2025</a>)</span>.</p>
+</section>
+<section id="what-is-passive-behavioral-data" class="level1">
+<h1>What is passive behavioral data?</h1>
+<p>With the proliferation of promising digital devices, such as smartphones, wearable devices and other health digital technologies, using embedded sensors, for instance, GPS, microphones and accelerometers, to continuously and unobtrusively collect data on user’s behavior is no longer hard to achieve, such as step count, total sleep time, number of missing calls, etc.</p>
+<div id="fig-feat-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-feat-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="feature-heatmap.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feat-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Heat map of feature use frequency across different mental illnesses. EDA: electrodermal activity Source: Shen et al.&nbsp;(2025).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="what-is-machine-learning-and-how-can-it-help" class="level1">
+<h1>What is machine learning and how can it help?</h1>
+<p>Passive behavioral data collected from smartphones and wearables is rich but complex, which they are related and frequently mentioned in different kinds of mental health illnesses. And there brings out a question: how can we find the deep relationship between those data and mental health status, so that we can make full use of them as a reliable source of supporting mental health monitoring? This is where machine learning becomes useful. Those raw data are difficult for humans to interpret meaningful patterns on their own, machine learning can therefore turn those data into different features and help summarize and interpret subtle behavioral changes related to mental health over time.</p>
+</section>
+<section id="machine-learning-model-random-forest" class="level1">
+<h1>Machine Learning Model: Random Forest</h1>
+<p>Among the many machine learning approaches explored in recent research, random forest has been widely used in mental health monitoring studies. If you don’t have a clear understanding of what Random Forest is, try to think about it as a committee of many simple decision-makers. Each member of the committee looks at the data from a slightly different angle—such as sleep patterns, activity levels, or phone usage—and forms a small, individual judgment. Therefore, when these judgments are combined, the model can identify patterns that would be difficult to notice by looking at any single behavior alone. Importantly, researchers can also examine which behaviors influenced the model the most, helping connect machine learning results back to real, understandable aspects of mental health issues.</p>
+</section>
+<section id="what-do-random-forest-actually-show" class="level1">
+<h1>What do Random Forest actually show?</h1>
+<p>Recall that, when the model is applied to those passive data, it can integrate information from different features and detect specific patterns and meaningful changes that related to specific mental health issues. The key advantage of Random Forest that enables us to clearly catch the pattern is that, its ability is to highlight which behavioral features contribute most to the model’s decisions, that is, each feature in this context has its own importance can be shown in number. In the reviewed studies, features related to sleep irregularity, reduced activity, and changes in daily routines frequently emerged as important indicators. These findings align with existing clinical knowledge, reinforcing the relevance of the detected patterns. Together, these results suggest that machine learning can support mental health monitoring by providing continuous, behavior-based insights over time. Rather than replacing clinical judgment, such models can act as an additional layer of information, helping to identify early warning signs and track changes in daily life.</p>
+</section>
+<section id="benefits-limitation" class="level1">
+<h1>Benefits &amp; Limitation</h1>
+<p>One crutial benefit of using machine learning to analyze passive behavioral data is to support continuous monitoring. Unlike the traditional assessments that need to take place at specific moments, such as a clinic interviews, passive data can be collected as part of everyday life, allowing changes in behavior to be captured over longer periods of time. Secondly is for earlier risk detection. As mentioned before, machine learning can observe some subtle patterns across multiple behaviors, such as gradual changes in sleep time or missing phone calls, they may help highlight early warning signs before more noticeable symptoms come out. Also importantly, this approach are intended to support clinicians, rather than replacing them. Those additional information summarized by machin learning can help complement clinical judgment and existing mental health practices as well.</p>
+<p>At the same time, there are important limitations and ethical considerations associated with this approach. Passive behavioral data is highly sensitive, raising concerns about privacy, data security, and informed consent. Individuals may not always be aware of how their data is collected or used, making transparency essential. Another challenge is bias. Not everyone uses smartphones or wearable devices in the same way, and some populations may be underrepresented in the data. As a result, models trained on these data may not generalize equally well across different groups. Finally, there are interpretation limitations. Behavioral patterns do not map directly onto mental health states, and changes in behavior can have many explanations. For this reason, machine learning outputs should be viewed as supportive signals that require careful interpretation, rather than definitive conclusions.</p>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>Overall, the use of passive behavioral data combined with machine learning represents a promising but cautious direction in mental health research. By embedding data collection into everyday life, these approaches move beyond episodic assessments and toward a more continuous understanding of behavioral change. Models such as random forest help make sense of complex behavioral data by identifying patterns that align with known mental health indicators, while remaining relatively interpretable. At the same time, ethical concerns—including privacy, bias, and responsible interpretation—must remain central to how these tools are developed and applied. Rather than replacing clinical expertise, data science can provide additional perspectives that support mental health monitoring in real-world settings.</p>
+</section>
+<section id="references" class="level1">
 
 
 
-</main> <!-- /main -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-shen2025passive" class="csl-entry" role="listitem">
+Shen, S., W. Qi, J. Zeng, S. Li, X. Liu, X. Zhu, C. Dong, et al. 2025. <span>“Passive Sensing for Mental Health Monitoring Using Machine Learning with Wearables and Smartphones: Scoping Review.”</span> <em>Journal of Medical Internet Research</em> 27: e77066. <a href="https://doi.org/10.2196/77066">https://doi.org/10.2196/77066</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
