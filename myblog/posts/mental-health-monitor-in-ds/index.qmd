@@ -1,0 +1,8 @@
+---
+title: "Using Everyday Digital Data to Support Mental Health Monitoring"
+author: "Shihan Xu"
+date: "2026-01-16"
+categories: [Explanations, Mental Health, Data Science]
+---
+
+This is a post with executable code.
